@@ -1,0 +1,5 @@
+setuptools~=54.1.2
+pymssql~=2.1.5
+tomlkit~=0.7.0
+tqdm~=4.59.0
+firebase-admin~=4.5.2

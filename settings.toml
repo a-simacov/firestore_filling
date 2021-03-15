@@ -1,0 +1,26 @@
+[ms_sql_server]
+server = "192.168.0.100"
+user = "sa1"
+password = "1"
+database = "MobileApp"
+
+[cloud_firestore]
+# File generated from Project Overview -> Project Settings -> Service accounts
+private_key_file = "private_key_file.json"
+
+[transfer_rules]
+# Item fields description:
+# name - name of collection
+# key_id - name of column from sql_script used for document ID
+# sql_script - SQL script used to get data for documents fields
+items = [
+    { name = "Agent", key_id = "AgentID", sql_script = "SELECT * FROM Agent" },
+    { name = "Service", key_id = "ServiceID", sql_script = """SELECT
+    top 100 Service.*
+        ,ServicePrice.ServicePriceID
+        ,ServicePrice.ServicePriceValue
+        ,ServicePrice.TariffPlanRef
+    FROM Service
+    LEFT OUTER JOIN ServicePrice
+    ON Service.ServiceID = ServicePrice.ServiceRef""" }
+]
